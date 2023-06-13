@@ -37,9 +37,10 @@ app.post("/logout",(req,res)=>{
     res.clearCookie("textMediaUserToken");
     res.end();
 });
-app.get("/posts",auth,async(req,res)=>{    
+app.get("/posts", auth, async (req, res) => {
     const posts = await Post.find();
-    res.send(posts);
+    const reversedPosts = posts.reverse();
+    res.send(reversedPosts);
 });
 app.get("/getposts/:userId",auth,async(req,res)=>{
     const {userId} = req.params;
